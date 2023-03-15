@@ -1,4 +1,4 @@
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import MainNavigation from "./components/MainNavigation";
 
 import styles from "./styles/main.css";
@@ -27,6 +27,29 @@ export default function App() {
       </body>
     </html>
   );
+}
+
+export function ErrorBoundary({ error }) {
+  <html lang="en">
+    <head>
+      <Meta />
+      <Links />
+      <title>Error</title>
+    </head>
+    <body>
+      <header>
+        <MainNavigation></MainNavigation>
+      </header>
+      <main className="error">
+        <h1>Error가 발생하였습니다!!!</h1>
+        <p>{error.message}</p>
+        <Link to="/">돌아기기</Link>
+      </main>
+      <ScrollRestoration />
+      <Scripts />
+      <LiveReload />
+    </body>
+  </html>;
 }
 
 export function links() {
