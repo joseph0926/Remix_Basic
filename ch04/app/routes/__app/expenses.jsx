@@ -8,6 +8,8 @@ import { FaDownload, FaPlus } from "react-icons/fa";
 export default function ExpensesLayout() {
   const expenses = useLoaderData();
 
+  const hasExpenses = expenses && expenses.length > 0;
+
   return (
     <>
       <Outlet />
@@ -22,7 +24,15 @@ export default function ExpensesLayout() {
             <span>Load Raw Data</span>
           </a>
         </section>
-        <ExpensesList expenses={expenses} />
+        {hasExpenses && <ExpensesList expenses={expenses} />}
+        {!hasExpenses && (
+          <section id="no-expenses">
+            <h1>No Expenses Data</h1>
+            <p>
+              Start <Link to="add">adding Someting!</Link>
+            </p>
+          </section>
+        )}
       </main>
     </>
   );
